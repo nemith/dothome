@@ -9,7 +9,7 @@
 //
 // [NativeLayout] returns a [Layout] object that uses the native OS paths for
 // directory paths while [CLILayout] follows the same except on Apple where is
-// chooses the [XDGLayout].  The, opinionated, idea is that CLI applications
+// chooses the [xdgLayout].  The, opinionated, idea is that CLI applications
 // have files that are meant to be dealt with directly by users and discovery
 // and editing of these files should be just like any other unix system.  You
 // may not like this and that is ok, just use [NativeLayout].

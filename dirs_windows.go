@@ -1,12 +1,39 @@
 package dothome
 
-// NativeLayout is the strategy for the native platform follwing defined practices.
-// For Unix (non-Darwin) it uses the XDGLayout.
-// For Darwin it uses the AppleLayout.
-// For Windows it uses the WindowsLayout.
-func NativeLayout() (Layout, error) { return WindowsLayout() }
+import (
+	"os"
+	"path/filepath"
+)
 
-// CLILayout is an opinionated layout for CLI applications.  It follows the
-// For Unix and Apple it uses the XDGLayout.  Apple won't use the AppleLayout.
-// Fow Windows it uses continues to use the WindowsLayout.
-func CLILayout() (Layout, error) { return WindowsLayout() }
+func NativeLayout() (Layout, error)                 { return windowsLayout() }
+func CLILayout() (Layout, error)                    { return windowsLayout() }
+func NativeAppLayout(app AppConfig) (Layout, error) { return windowsAppLayout(app) }
+func CLIAppLayout(app AppConfig) (Layout, error)    { return windowsAppLayout(app) }
+
+func windowsLayout() (Layout, error) {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return Layout{}, err
+	}
+
+	return Layout{
+		Home:      home,
+		ConfigDir: envOrDefault("AppData", filepath.Join(home, "AppData", "Roaming")),
+		DataDir:   envOrDefault("AppData", filepath.Join(home, "AppData", "Roaming")),
+		CacheDir:  envOrDefault("LocalAppData", filepath.Join(home, "AppData", "Local")),
+	}, nil
+}
+
+func windowsAppLayout(appcfg AppConfig) (Layout, error) {
+	layout, err := windowsLayout()
+	if err != nil {
+		return Layout{}, err
+	}
+
+	return Layout{
+		Home:      layout.Home,
+		ConfigDir: filepath.Join(layout.ConfigDir, appcfg.OrgName, appcfg.Name),
+		DataDir:   filepath.Join(layout.DataDir, appcfg.OrgName, appcfg.Name),
+		CacheDir:  filepath.Join(layout.CacheDir, appcfg.OrgName, appcfg.Name),
+	}, nil
+}

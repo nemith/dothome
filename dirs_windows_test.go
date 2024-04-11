@@ -12,7 +12,7 @@ func TestWindowsLayout(t *testing.T) {
 		t.Setenv("AppData", "")
 		t.Setenv("LocalAppData", "")
 
-		layout, err := WindowsLayout()
+		layout, err := windowsLayout()
 		assert.NoError(t, err)
 
 		assert.Equal(t, "C:\\Users\\user", layout.Home)
@@ -25,7 +25,7 @@ func TestWindowsLayout(t *testing.T) {
 		t.Setenv("AppData", "H:\\AppData\\Roaming")
 		t.Setenv("LocalAppData", "H:\\AppData\\Local")
 
-		layout, err := WindowsLayout()
+		layout, err := windowsLayout()
 		assert.NoError(t, err)
 
 		assert.Equal(t, "C:\\Users\\user", layout.Home)
@@ -40,7 +40,7 @@ func TestWindowsAppLayout(t *testing.T) {
 	t.Setenv("AppData", "")
 	t.Setenv("LocalAppData", "")
 
-	layout, err := WindowsAppLayout(testAppConfig)
+	layout, err := windowsAppLayout(testAppConfig)
 	assert.NoError(t, err)
 
 	assert.Equal(t, "C:\\Users\\user", layout.Home)
