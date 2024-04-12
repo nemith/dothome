@@ -15,7 +15,8 @@ type Layout struct {
 	// XDG_RUNTIME_DIR. No equivalent on macOS or Windows
 }
 
-// AppConfig defines how to create application specific directories.
+// AppConfig defines how to create application specific directories for
+// [NativeAppLayout] or [CLIAppLayout].
 type AppConfig struct {
 	// Name is the name of the application. This field is mandatory.
 	Name string

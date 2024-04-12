@@ -44,7 +44,7 @@ func TestWindowsAppLayout(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Equal(t, "C:\\Users\\user", layout.Home)
-	assert.Equal(t, "C:\\Users\\user\\AppData\\Roaming\\MyOrg\\My App", layout.ConfigDir)
-	assert.Equal(t, "C:\\Users\\user\\AppData\\Roaming\\MyOrg\\My App", layout.DataDir)
-	assert.Equal(t, "C:\\Users\\user\\AppData\\Local\\MyOrg\\My App", layout.CacheDir)
+	assert.Equal(t, "C:\\Users\\user\\AppData\\Roaming\\MyOrg\\My App\\config", layout.ConfigDir)
+	assert.Equal(t, "C:\\Users\\user\\AppData\\Roaming\\MyOrg\\My App\\data", layout.DataDir)
+	assert.Equal(t, "C:\\Users\\user\\AppData\\Local\\MyOrg\\My App\\cache", layout.CacheDir)
 }

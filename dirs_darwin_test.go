@@ -24,8 +24,8 @@ func TestAppleLayoutApp(t *testing.T) {
 		assert.NoError(t, err)
 
 		assert.Equal(t, "/Users/user", layout.Home)
-		assert.Equal(t, "/Users/user/Library/Preferences/com.myorg.MyApp/config", layout.ConfigDir)
-		assert.Equal(t, "/Users/user/Library/Application Support/com.myorg.MyApp/data", layout.DataDir)
+		assert.Equal(t, "/Users/user/Library/Preferences/com.myorg.MyApp", layout.ConfigDir)
+		assert.Equal(t, "/Users/user/Library/Application Support/com.myorg.MyApp", layout.DataDir)
 		assert.Equal(t, "/Users/user/Library/Caches/com.myorg.MyApp", layout.CacheDir)
 	})
 
@@ -35,8 +35,8 @@ func TestAppleLayoutApp(t *testing.T) {
 		assert.NoError(t, err)
 
 		assert.Equal(t, "/Users/user", layout.Home)
-		assert.Equal(t, "/Users/user/Library/Preferences/My App/config", layout.ConfigDir)
-		assert.Equal(t, "/Users/user/Library/Application Support/My App/data", layout.DataDir)
+		assert.Equal(t, "/Users/user/Library/Preferences/My App", layout.ConfigDir)
+		assert.Equal(t, "/Users/user/Library/Application Support/My App", layout.DataDir)
 		assert.Equal(t, "/Users/user/Library/Caches/My App", layout.CacheDir)
 	})
 }
